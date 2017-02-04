@@ -1,0 +1,9 @@
+.share {
+  composes: modalcontainer from "../shared/Option/Option.css";
+}
+
+.socialOption {
+  composes: option from '../shared/Option/Option.css';
+  justify-content: space-around;
+  padding: 8px 0;
+}

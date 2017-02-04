@@ -1,0 +1,137 @@
+.shop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(248,248,248,1);
+  overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.header {
+  position: relative;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.5) 100%), url(../shared/images/fabcafeimage.jpg);
+  background-position: top center;
+  background-size: cover;
+  margin: -10px -10px 0;
+  height: 220px;
+}
+
+.logo {
+  margin: 0;
+  padding: 0 55px;
+  text-align: center;
+}
+
+.logo img {
+  max-width: 100%;
+  max-height: 100px;
+}
+
+.pickupinfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  padding: 5px 10px;
+  font-size: .8em;
+  justify-content: center;
+  align-items: baseline;
+  color: white;
+}
+
+.pickupstatus {
+  min-width: 100px;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.pickupstatus:before {
+  content: '';
+  float: left;
+  width: 16px;
+  height: 16px;
+  margin: -2px 7px 5px 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-150 -150 1150 1150"><path fill="%23fff" d="M500,10C229.8,10,10,229.8,10,500c0,270.2,219.8,490,490,490c270.2,0,490-219.8,490-490C990,229.8,770.2,10,500,10z M500,910.2c-226.2,0-410.2-184-410.2-410.2c0-226.2,184-410.2,410.2-410.2c226.2,0,410.2,184,410.2,410.2C910.2,726.1,726.2,910.2,500,910.2z M753.1,374c8.2,11.9,5.2,28.1-6.6,36.3L509.9,573.7c-4.4,3.1-9.6,4.6-14.8,4.6c-4.1,0-8.3-1-12.1-3c-8.6-4.5-14-13.4-14-23.1V202.5c0-14.4,11.7-26.1,26.1-26.1c14.4,0,26.1,11.7,26.1,26.1v300l195.6-135.1C728.7,359.2,744.9,362.1,753.1,374z"/></svg>');
+}
+
+.pickuptimes {
+  text-transform: none;
+  margin-left: 4px;
+}
+
+.pickuptimes > span + span:before {
+  content: ', '
+}
+
+.walkingmin {
+  min-width: 100px;
+  padding-right: 16px;
+  cursor: pointer;
+}
+
+.walkingmin:before {
+  content: '';
+  float: left;
+  width: 12px;
+  height: 16px;
+  margin: 0 7px 5px 0;
+  background-image: url('data:image/svg+xml;utf8,<svg width="12" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 744.09448819 1052.3622047"><path fill="%23fff" d="m408.680481,206.147766c41.966217,3.399826 78.316895,-27.780182 81.716888,-69.598953c3.249664,-41.821426 -27.930084,-78.172165 -69.896301,-81.719315c-41.5242,-3.102509 -78.169678,28.0774 -81.274689,69.896271c-3.544647,41.524124 27.632751,78.172073 69.454102,81.421997" /><path fill="%23fff" d="m344.399597,237.327682c14.925629,-10.491547 33.101013,-17.435944 53.344788,-15.664948c26.009033,2.070953 47.286926,18.177963 60.291412,37.829636l76.54599,151.762939l104.473511,71.96463c8.865234,6.796844 14.480713,17.878113 13.299255,29.99588c-1.478943,18.767334 -17.880676,32.806091 -36.648071,31.179871c-5.762878,-0.294861 -10.491516,-2.660339 -15.662415,-5.023621l-113.933319,-78.466797c-3.544647,-2.807678 -6.352386,-6.354828 -8.718079,-10.049316l-28.519531,-56.891785l-34.429749,151.318298l134.619232,159.002075c3.102417,4.876038 5.170593,10.638916 6.354858,16.401672l36.350708,191.955627c-0.294739,4.283997 0.294678,6.944336 0,10.344177c-2.06842,28.666931 -26.893311,49.355347 -55.118042,47.286926c-23.496277,-1.920959 -40.78476,-19.212036 -46.252777,-40.637268l-34.282593,-179.837769l-109.49942,-119.693604l-25.269531,116.591003c-0.884308,5.465637 -8.125916,16.993835 -10.194336,21.572632l-105.06546,177.03009c-10.344223,16.107056 -27.930054,26.451355 -47.879044,24.827576c-28.519547,-2.070862 -49.649994,-26.895813 -47.286942,-55.268005c0.592056,-7.978638 3.991798,-16.401794 6.946976,-22.164673l97.529007,-163.583496l81.422028,-360.559784l-53.199753,43.000458l-28.222275,128.411499c-3.841873,16.551758 -18.767441,29.998413 -36.353271,28.669678c-19.062119,-1.478943 -32.953491,-17.880798 -31.474655,-36.94281c0,-1.478943 0.294739,-2.955322 0.592026,-4.728943l33.395645,-149.691833c2.068314,-6.355011 5.468063,-12.117889 10.491547,-16.551819l152.35228,-123.388199z" /></svg>');
+}
+
+.address {
+  margin: 0 auto;
+  max-width: 250px;
+  text-align: center;
+  font-size: 12px;
+  color: #444;
+}
+
+.intro {
+  background: white;
+  margin: 0 -10px 20px;
+  padding: 20px 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.intro p {
+  text-align: left;
+}
+
+.itemqty {
+  content: '';
+  font-family: 'Fredoka One', 'Arial Rounded MT', Helvetica, sans-serif;
+  padding-left: 8px;
+  width: 40px;
+  font-weight: 800;
+  flex: none;
+}
+
+.itemname {
+  flex: auto;
+}
+
+.itemprice {
+  min-width: 70px;
+  flex: none;
+  text-align: right;
+  padding-right: 8px;
+  font-size: .85em;
+  font-weight: 400;
+}
+
+.footer {
+  text-align: center;
+  margin: 16px -8px 0;
+  padding: 8px 8px 50px;
+  font-size: 12px;
+  line-height: 1.8em;
+  color: silver;
+}
+
+.forpickup {
+  font-family: 'Fredoka One', 'Arial Rounded MT', Helvetica, sans-serif;
+}

@@ -1,0 +1,64 @@
+.modalslider {
+  position: absolute;
+  width: auto;
+  height: auto;
+  transition: transform .2s ease-out;
+  z-index: 100;
+}
+
+.top {
+  composes: modalslider;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.top.hide {
+  transform: translateY(-100%) scale(0.9);
+}
+
+.left {
+  composes: modalslider;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.left.hide {
+  transform: translateX(-100%) scale(0.95);
+}
+
+.bottom {
+  composes: modalslider;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.bottom.hide {
+  transform: translateY(100%) scale(0.9);
+}
+
+.right {
+  composes: modalslider;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.right.hide {
+  transform: translateX(100%) scale(0.95);
+}
+
+.full {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .full.hide {
+    transform: translateX(-100%) scale(0.9);
+  }
+}

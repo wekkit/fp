@@ -1,0 +1,38 @@
+.modalbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  transform: scale(0.9);
+  opacity: 0;
+  transition: all .1s ease-out;
+}
+
+.normal {
+  background: rgba(255,255,255,0.93);
+  box-shadow: 0 25px 50px rgba(0,0,0,.3);
+  transition: all .1s ease-out;
+  border-radius: 4px;
+  width: 240px;
+  transition: all .1s 0s ease-out;
+}
+
+.note {
+  composes: normal;
+  transform-origin: 50% 200%;
+  width: calc(100% - 20px);
+  transition: all .1s .2s ease-out;
+}
+
+.cover {
+  composes: normal;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+}

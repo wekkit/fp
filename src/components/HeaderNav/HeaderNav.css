@@ -1,0 +1,49 @@
+.headernav {
+  position: relative;
+  height: 40px;
+}
+
+:global(.homeScreenSafari) .headernav {
+  border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.button {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 2px solid white;
+  border-radius: 16px;
+  margin: 10px;
+  background: #d70c19;
+  box-shadow: 0 1px 2px rgba(0,0,0,.5), inset 0 1px 2px rgba(0,0,0,.5);
+  overflow: hidden;
+}
+
+.button:active {
+  background-color: #eee;
+}
+
+.menubutton {
+  composes: button;
+}
+
+.menubutton:before {
+  content: "fp";
+  letter-spacing: -2px;
+  font-family: 'Fredoka One', 'Arial Rounded MT', Helvetiva, sans-serif;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  font-weight: bolder;
+  font-size: 1.6em;
+  position: absolute;
+  top: -2px;
+  left: -3px;
+  right: -2px;
+  text-align: center;
+}
+
+@media(min-width: 768px) {
+  .menubutton {
+    display: none;
+  }
+}
