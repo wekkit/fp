@@ -15,7 +15,6 @@
   background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.5) 100%), url(../shared/images/fabcafeimage.jpg);
   background-position: top center;
   background-size: cover;
-  margin: -10px -10px 0;
   height: 220px;
 }
 
@@ -92,8 +91,7 @@
 
 .intro {
   background: white;
-  margin: 0 -10px 20px;
-  padding: 20px 20px 0;
+  padding: 20px 10px 0;
   border-bottom: 1px solid #eee;
 }
 
@@ -110,8 +108,15 @@
   flex: none;
 }
 
-.itemname {
+.iteminfo {
   flex: auto;
+}
+
+.itemdesc {
+  margin-top: 4px;
+  font-size: 0.8em;
+  color: #888;
+  line-height: 1.1em;
 }
 
 .itemprice {

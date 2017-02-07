@@ -50,7 +50,10 @@ export default class Option extends Component {
       <Swipeable className={
           (this.props.deleted ? styles.deleted
           : (this.state.showDelete ? styles.showdelete
-          : (!this.props.deletable ? styles.option : styles.deleteable)))
+          : (this.props.navigatable ? styles.navigatable
+          : (this.props.checkable && this.props.checked ? styles.checked
+          : (this.props.checkable ? styles.checkable
+          : (!this.props.deletable ? styles.option : styles.deleteable))))))
         }
         onClick={this.onClickHandler.bind(this)}
         onSwipedLeft={this.onShowDeleteHandler.bind(this, true)}
@@ -64,6 +67,9 @@ export default class Option extends Component {
 
 Option.propTypes = {
   deletable: PropTypes.bool,
+  navigatable: PropTypes.bool,
+  checkable: PropTypes.bool,
+  checked: PropTypes.bool,
   onDelete: PropTypes.func,
   onShowDelete: PropTypes.func,
   onClick: PropTypes.func,

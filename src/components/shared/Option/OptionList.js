@@ -18,6 +18,6 @@ export default class OptionList extends Component {
 }
 
 OptionList.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   children: PropTypes.node
 }

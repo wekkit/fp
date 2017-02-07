@@ -46,6 +46,7 @@ export class Shop {
         {
           id: 1792,
           name: 'Café Latte',
+          description: 'The milky classic with a cremy top',
           price: 600,
           qty: 1,
           modifiers: [
@@ -67,6 +68,7 @@ export class Shop {
           addons: [
             {
               name: 'Iced',
+              description: 'We\'ll serve it in a bigger container with ice',
               price: 100
             },
             {
@@ -87,6 +89,7 @@ export class Shop {
         {
           id: 8231,
           name: 'Flat White',
+          description: 'The Australien favorite with a thin layer of crema',
           price: 600,
           modifiers: [
             {
@@ -107,6 +110,7 @@ export class Shop {
           addons: [
             {
               name: 'Iced',
+              description: 'We\'ll serve it in a bigger container with ice',
               price: 100
             },
             {
@@ -147,6 +151,7 @@ export class Shop {
           addons: [
             {
               name: 'Iced',
+              description: 'We\'ll serve it in a bigger container with ice',
               price: 100
             },
             {
@@ -187,6 +192,7 @@ export class Shop {
           addons: [
             {
               name: 'Iced',
+              description: 'We\'ll serve it in a bigger container with ice',
               price: 100
             },
             {
@@ -213,6 +219,7 @@ export class Shop {
         {
           id: 8232,
           name: 'Long Black',
+          description: 'Sometimes also called Americano',
           price: 500,
           modifiers: [
             {
@@ -233,6 +240,7 @@ export class Shop {
           addons: [
             {
               name: 'Iced',
+              description: 'We\'ll serve it in a bigger container with ice',
               price: 100
             },
             {
@@ -274,6 +282,7 @@ export class Shop {
         {
           id: 8234,
           name: 'Espresso',
+          description: 'Just the goodness of our beans',
           price: 400,
           modifiers: [],
           addons: [

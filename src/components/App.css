@@ -38,6 +38,8 @@ h3 {
 p {
   font-size: 0.9em;
   margin-bottom: 1.9em;
+	margin-left: 10px;
+	margin-right: 10px;
   text-align: center;
 }
 
@@ -67,6 +69,12 @@ input[readonly], select[readonly] {
 input:required, input:invalid, input:focus,
 select:required, select:invalid, select:focus {
   box-shadow: none;
+}
+
+textarea {
+	width: 100%;
+	font-size: 0.9em;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .app {
