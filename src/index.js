@@ -1,7 +1,4 @@
 // Polyfills
-import 'core-js/fn/array/find'
-import 'core-js/fn/array/find-index'
-import 'core-js/fn/object/assign'
 import 'whatwg-fetch'
 
 import React from 'react'

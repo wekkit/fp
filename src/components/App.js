@@ -146,6 +146,7 @@ export default class App extends SceneComponent {
             now={this.state.now}
             currentPosition={this.state.currentPosition}
             onLocate={this.locateHandler.bind(this)}
+            onBlock={this.blockingModalOpenHandler.bind(this)}
             />
           <ModalSlider
             from='top'
@@ -205,6 +206,7 @@ export default class App extends SceneComponent {
         </ModalSlider>
         <ModalBox
           render={!!this.state.blockingModal}
+          size={this.state.blockingModalObj && this.state.blockingModalObj.size}
           visible={this.state.blockingModalVisible}>
           <this.state.blockingModal
             obj={this.state.blockingModalObj}

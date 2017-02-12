@@ -48,6 +48,7 @@ export default class Option extends Component {
   render () {
     return (
       <Swipeable className={
+          ((this.props.onClick instanceof Function) && styles.selectable) + ' ' +
           (this.props.deleted ? styles.deleted
           : (this.state.showDelete ? styles.showdelete
           : (this.props.navigatable ? styles.navigatable

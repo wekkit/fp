@@ -24,7 +24,7 @@
   display: flex;
 }
 
-.option:active {
+.option.selectable:active {
   background-color: #eee;
 }
 
@@ -50,6 +50,7 @@
 .checkable:before {
   content: '';
   width: 30px;
+  flex: none;
 }
 
 .checked {
