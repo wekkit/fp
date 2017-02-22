@@ -67,15 +67,3 @@
   composes: item;
   color: #d70c19;
 }
-
-@media (min-width: 768px) {
-  .mainnav {
-    max-width: 220px;
-  }
-
-  .inactive {
-    -webkit-filter: blur(4px) brightness(0.7);
-    -moz-filter: blur(4px) brightness(0.7);
-    filter: blur(4px) brightness(0.7);
-  }
-}

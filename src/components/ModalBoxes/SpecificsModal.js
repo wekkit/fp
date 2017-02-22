@@ -1,6 +1,7 @@
 import styles from './../shared/styles/ModalStyles.css'
 import shopStyles from '../Shop/Shop.css'
 
+import ModalOverlay from '../shared/ModalOverlay/ModalOverlay.js'
 import OptionList from '../shared/Option/OptionList.js'
 import Option from '../shared/Option/Option.js'
 
@@ -10,11 +11,6 @@ import React, { Component, PropTypes } from 'react'
 
 export default class SpecificsModal extends Component {
 
-  componentDidMount () {
-    // TODO: wtf. blocks delete!!
-    this.refs.specifics.ontouchmove = function (event) { event.stopPropagation() }
-  }
-
   addItemHandler () {
     this.props.onClose()
     this.props.obj.onAddItem()
@@ -22,7 +18,9 @@ export default class SpecificsModal extends Component {
 
   closeHandler () {
     this.props.onClose()
-    this.props.obj.onClose()
+    if (this.props.obj.onClose instanceof Function) {
+      this.props.obj.onClose()
+    }
   }
 
   onModifyItemHandler (modifier, option) {
@@ -39,10 +37,11 @@ export default class SpecificsModal extends Component {
     const item = this.props.obj.item
 
     return (
-      <div ref='specifics' className={shopStyles.specificsmodalbox}>
+      <ModalOverlay
+        title={item.name}
+        onBack={this.closeHandler.bind(this)}>
         <div className={shopStyles.specifics}>
           <div className={shopStyles.item}>
-            <h1>{item.name}</h1>
             <p>{item.description}</p>
           </div>
           <div className={shopStyles.menu}>
@@ -67,7 +66,7 @@ export default class SpecificsModal extends Component {
             {item.addons.length &&
               <OptionList name={'Add-Ons'}>
                 {item.addons.map((addon) =>
-                  <Option key={addon.id}
+                  <Option key={addon.name}
                     checkable={!false}
                     checked={addon.checked}
                     onClick={this.onAddonItemHandler.bind(this, addon)}>
@@ -90,9 +89,9 @@ export default class SpecificsModal extends Component {
           </div>
         </div>
         <div className={styles.controls}>
-          <button className={styles.button} onClick={this.addItemHandler.bind(this)}>{'Add 1 Item'}</button>
+          <button className={styles.button} onClick={this.addItemHandler.bind(this)}>{'Add 1 to cart'}</button>
         </div>
-      </div>
+      </ModalOverlay>
     )
   }
 

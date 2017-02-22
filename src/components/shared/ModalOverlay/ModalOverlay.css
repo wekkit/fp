@@ -6,14 +6,6 @@
   flex-direction: column;
 }
 
-@media (min-width: 768px) {
-  .modaloverlay {
-    position: relative;
-    max-width: 400px;
-    box-shadow: 0 0 4px rgba(0,0,0,0.3);
-  }
-}
-
 .header {
   flex: none;
   height: 48px;
@@ -106,4 +98,7 @@
   overflow: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 4px 4px;
 }

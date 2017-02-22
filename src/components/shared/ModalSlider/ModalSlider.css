@@ -57,9 +57,3 @@
   bottom: 0;
   overflow: hidden;
 }
-
-@media (min-width: 768px) {
-  .full.hide {
-    transform: translateX(-100%) scale(0.9);
-  }
-}

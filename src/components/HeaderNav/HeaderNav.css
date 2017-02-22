@@ -41,9 +41,3 @@
   right: -2px;
   text-align: center;
 }
-
-@media(min-width: 768px) {
-  .menubutton {
-    display: none;
-  }
-}

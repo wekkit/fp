@@ -7,13 +7,6 @@
   display: flex;
 }
 
-@media (min-width: 768px) {
-  .optionlist {
-    max-width: 420px;
-    border-radius: 3px;
-  }
-}
-
 .option {
   background: white;
   padding: 0.8em 0.7em;
