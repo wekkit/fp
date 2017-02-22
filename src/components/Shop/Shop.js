@@ -7,6 +7,7 @@ import SceneComponent from '../../mixins/SceneComponent.js'
 import OptionList from '../shared/Option/OptionList.js'
 import Option from '../shared/Option/Option.js'
 
+import InfoModal from '../ModalBoxes/InfoModal.js'
 import SpecificsModal from '../ModalBoxes/SpecificsModal.js'
 
 import Utils from 'utils'
@@ -46,6 +47,14 @@ export default class ShopView extends SceneComponent {
   }
 
   onSelectItemHandler (item) {
+    /* if (!this.props.purchase.shop.isOpen()) {
+      this.props.onBlock(InfoModal, {
+        title: 'Snap...',
+        text: this.props.purchase.shop.name + ' is currently closed and can\'t take your order.'
+      })
+      return
+    } */
+
     if (item.modifiers.length || item.addons.length) {
       this.props.onBlock(SpecificsModal, {
         item: item,

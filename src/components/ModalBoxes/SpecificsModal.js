@@ -49,9 +49,9 @@ export default class SpecificsModal extends Component {
                       <div className={shopStyles.itemname}>{option.name}</div>
                       {!!option.description && <div className={shopStyles.itemdesc}>{option.description}</div>}
                     </div>
-                    <div className={shopStyles.itemprice}>{
-                      !!option.price && FormatPrice.format(this.props.obj.locale.code, this.props.obj.currency, (option.price / 100))
-                    }</div>
+                    <div className={shopStyles.itemprice}>
+                      {option.price > 0 && '+'}
+                      {!!option.price && FormatPrice.format(this.props.obj.locale.code, this.props.obj.currency, (option.price / 100))}</div>
                   </Option>
                 )}
               </OptionList>
