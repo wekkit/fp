@@ -86,6 +86,7 @@ export class PurchaseItem {
   price = 0
   modifiers = {}
   addons = []
+  specialRequest
   @observable changes = 0
 
   @computed get description () {
@@ -97,7 +98,8 @@ export class PurchaseItem {
     }
     const modifiers = Object.keys(this.modifiers).map((k) => this.modifiers[k].name).sort(sort).reduce(reducer, 0)
     const addons = this.addons.sort(sort).map((a) => a.name).reduce(reducer, 0)
-    return (modifiers ? modifiers + ' ' : '') + this.item.name + (addons ? ' - ' + addons : '')
+    const specialRequest = this.specialRequest ? ' (' + this.specialRequest + ')' : ''
+    return (modifiers ? modifiers + ' ' : '') + this.item.name + (addons ? ' - ' + addons : '') + specialRequest
   }
 
   constructor (item) {
@@ -130,6 +132,11 @@ export class PurchaseItem {
     if (this.quantity | 0 < 1) {
       this.quantity = 0
     }
+    this.changes++
+  }
+
+  addSpecialRequest (value) {
+    this.specialRequest = value
     this.changes++
   }
 

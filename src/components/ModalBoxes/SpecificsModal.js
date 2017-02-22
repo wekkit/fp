@@ -25,14 +25,6 @@ export default class SpecificsModal extends Component {
     this.props.onClose()
   }
 
-  onModifyItemHandler (modifier, option) {
-    this.cartItem.modify(modifier, option)
-  }
-
-  onAddonItemHandler (addon) {
-    this.cartItem.toggleAddon(addon)
-  }
-
   render () {
     const item = this.props.obj.item
 
@@ -52,7 +44,7 @@ export default class SpecificsModal extends Component {
                   <Option key={option.name}
                     checkable
                     checked={this.cartItem.optionIsChecked(modifier, option)}
-                    onClick={this.onModifyItemHandler.bind(this, modifier, option)}>
+                    onClick={() => this.cartItem.modify(modifier, option)}>
                     <div className={shopStyles.iteminfo}>
                       <div className={shopStyles.itemname}>{option.name}</div>
                       {!!option.description && <div className={shopStyles.itemdesc}>{option.description}</div>}
@@ -70,7 +62,7 @@ export default class SpecificsModal extends Component {
                   <Option key={addon.name}
                     checkable
                     checked={this.cartItem.addonIsChecked(addon)}
-                    onClick={this.onAddonItemHandler.bind(this, addon)}>
+                    onClick={() => this.cartItem.toggleAddon(addon)}>
                     <div className={shopStyles.iteminfo}>
                       <div className={shopStyles.itemname}>{addon.name}</div>
                       {!!addon.description && <div className={shopStyles.itemdesc}>{addon.description}</div>}
@@ -84,7 +76,7 @@ export default class SpecificsModal extends Component {
             }
             <OptionList>
               <Option>
-                <textarea placeholder={'Enter special requests for this ' + item.name + '...'} />
+                <textarea onBlur={(e) => this.cartItem.addSpecialRequest(e.target.value)} placeholder={'Enter special requests for this ' + item.name + '...'} />
               </Option>
             </OptionList>
           </div>
