@@ -9,7 +9,9 @@ export class Purchase {
   @observable id
   @observable status = 0
   date
-  @observable items = []
+  items = []
+  @observable quantity = 0
+  total = 0
   @observable paymentMethod
   shop
   user
@@ -43,6 +45,14 @@ export class Purchase {
     return this.items.filter((i) => i.item.id === itemId).map((i) => i.quantity).reduce((a, b) => (a | 0) + b, 0)
   }
 
+  calculateCart () {
+    this.quantity = this.items.map((i) => i.quantity).reduce((a, b) => (a | 0) + b, 0)
+    this.total = this.items.reduce((a, b) => {
+      return { price: (a ? a.price : 0) + b.price * b.quantity }
+    }, 0).price || 0
+    console.log(this.toString())
+  }
+
   addItem (item) {
     if (!item) {
       return
@@ -53,18 +63,12 @@ export class Purchase {
     } else {
       this.items.push(item)
     }
-    console.log(this.toString())
+    this.calculateCart()
   }
 
   deleteItem (itemId) {
     this.items = this.items.filter((i) => i.item.id !== itemId)
-    console.log(this.toString())
-  }
-
-  @computed get total () {
-    return this.items.reduce((a, b) => {
-      return { price: (a ? a.price : 0) + b.price * b.quantity }
-    }, 0).price || 0
+    this.calculateCart()
   }
 
   toString () {

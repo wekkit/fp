@@ -86,7 +86,7 @@ export default class ProfileView extends SceneComponent {
         loading={this.state.loading}>
         <ModalSlider
           from='left'
-          cover={!false}
+          cover
           render={this.toRender('overview')}
           visible={this.toShow('overview')}>
           <OptionList name={'Your name'}>

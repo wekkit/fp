@@ -11,6 +11,7 @@ import ModalBox from './shared/ModalBox/ModalBox.js'
 
 //  Nav elements
 import HeaderHomeNav from './HeaderNav/HomeNav.js'
+import CheckoutSummary from './CheckoutSummary/CheckoutSummary.js'
 import MainNav from './MainNav/MainNav.js'
 
 // Modals
@@ -156,7 +157,18 @@ export default class App extends SceneComponent {
               onToggleMainMenu={this.toggleMainMenuHandler.bind(this)} />
           </ModalSlider>
           <ModalSlider
-            cover={!false}
+            from='bottom'
+            render
+            visible={this.props.purchaseStore.purchase.items.length > 0}>
+            <CheckoutSummary
+              quantity={this.props.purchaseStore.purchase.quantity}
+              total={this.props.purchaseStore.purchase.total}
+              locale={this.props.purchaseStore.purchase.locale}
+              currency={this.props.purchaseStore.purchase.currency}
+              onCheckout={this.navigateHandler.bind(this, 'checkout')} />
+          </ModalSlider>
+          <ModalSlider
+            cover
             render={this.toRender('profile')}
             visible={this.toShow('profile')}>
             <ProfileView
@@ -165,7 +177,7 @@ export default class App extends SceneComponent {
               onBlock={this.blockingModalOpenHandler.bind(this)} />
           </ModalSlider>
           <ModalSlider
-            cover={!false}
+            cover
             render={this.toRender('orders')}
             visible={this.toShow('orders')}>
             <OrdersView
@@ -173,7 +185,7 @@ export default class App extends SceneComponent {
               onBlock={this.blockingModalOpenHandler.bind(this)} />
           </ModalSlider>
           {/* <ModalSlider
-            cover={!false}
+            cover
             render={this.toRender('share')}
             visible={this.toShow('share')}>
             <ShareView
@@ -182,7 +194,7 @@ export default class App extends SceneComponent {
           </ModalSlider>
           */}
           <ModalSlider
-            cover={!false}
+            cover
             render={this.toRender('payment')}
             visible={this.toShow('payment')}>
             <PaymentView
@@ -195,8 +207,8 @@ export default class App extends SceneComponent {
         </div>
         <ModalSlider
           from='left'
-          cover={!false}
-          render={!false}
+          cover
+          render
           visible={this.state.mainNavVisible}
           unslide='true'>
           <MainNav

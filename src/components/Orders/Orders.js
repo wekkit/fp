@@ -40,7 +40,7 @@ export default class OrdersView extends SceneComponent {
         onBack={this.backHandler.bind(this)}>
         <ModalSlider
           from='left'
-          cover={!false}
+          cover
           render={this.toRender('overview')}
           visible={this.toShow('overview')}>
           <OptionList name={'Last week'}>

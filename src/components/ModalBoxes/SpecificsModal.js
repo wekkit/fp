@@ -50,7 +50,7 @@ export default class SpecificsModal extends Component {
               <OptionList key={modifier.name} name={modifier.name}>
                 {modifier.options.map((option) =>
                   <Option key={option.name}
-                    checkable={!false}
+                    checkable
                     checked={this.cartItem.optionIsChecked(modifier, option)}
                     onClick={this.onModifyItemHandler.bind(this, modifier, option)}>
                     <div className={shopStyles.iteminfo}>
@@ -68,7 +68,7 @@ export default class SpecificsModal extends Component {
               <OptionList name={'Add-Ons'}>
                 {item.addons.map((addon) =>
                   <Option key={addon.name}
-                    checkable={!false}
+                    checkable
                     checked={this.cartItem.addonIsChecked(addon)}
                     onClick={this.onAddonItemHandler.bind(this, addon)}>
                     <div className={shopStyles.iteminfo}>

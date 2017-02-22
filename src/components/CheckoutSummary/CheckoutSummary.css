@@ -1,0 +1,43 @@
+.checkoutSummary {
+  position: relative;
+  height: 48px;
+  background: white;
+  box-shadow: 0 0 2px rgba(0,0,0,.2);
+}
+
+.button {
+  composes: button from '../shared/styles/ModalStyles.css';
+  display: flex;
+  align-items: center;
+}
+
+.quantity {
+  flex: 1;
+  text-align: left;
+}
+
+.quantity:before {
+  content: attr(data);
+  display: inline-block;
+  font-size: 0.9em;
+  font-family: 'Fredoka One', 'Arial Rounded MT', Helvetica, sans-serif;
+  font-weight: bold;
+  line-height: 1.95em;
+  text-align: center;
+  height: 1.95em;
+  width: 1.95em;
+  margin: -0.2em -0.25em;
+  background: #ea444f ;
+}
+
+.label {
+  flex: 4;
+}
+
+.total {
+  flex: 1;
+  padding-top: 0.2em;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: right;
+}

@@ -58,7 +58,8 @@ export default class Option extends Component {
         }
         onClick={this.onClickHandler.bind(this)}
         onSwipedLeft={this.onShowDeleteHandler.bind(this, true)}
-        onSwipedRight={this.onShowDeleteHandler.bind(this, false)}>
+        onSwipedRight={this.onShowDeleteHandler.bind(this, false)}
+        preventDefaultTouchmoveEvent={false}>
         {this.props.children}
         <div className={styles.deletebutton} onClick={this.onDeleteHandler.bind(this)}><span>Delete</span></div>
       </Swipeable>
