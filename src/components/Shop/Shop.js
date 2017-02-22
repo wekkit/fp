@@ -11,6 +11,7 @@ import SpecificsModal from '../ModalBoxes/SpecificsModal.js'
 
 import Utils from 'utils'
 import FormatPrice from 'format-price'
+import { PurchaseItem } from '../../models/Purchase.js'
 
 import Logo from '../shared/images/fabcafelogo.png'
 
@@ -32,10 +33,9 @@ export default class ShopView extends SceneComponent {
     this.refs.shop.ontouchmove = function (event) { event.stopPropagation() }
   }
 
-  componentDidUpdate (props, state) {
+  /* componentDidUpdate (props, state) {
     this.refs.shop && (this.refs.shop.ontouchmove = function (event) { event.stopPropagation() })
-    this.refs.specifics && (this.refs.specifics.ontouchmove = function (event) { event.stopPropagation() })
-  }
+  } */
 
   locateHandler () {
     this.props.onLocate(() => {
@@ -46,31 +46,25 @@ export default class ShopView extends SceneComponent {
   }
 
   onSelectItemHandler (item) {
-    this.props.onBlock(SpecificsModal, {
-      item: item,
-      size: 'cover',
-      locale: this.props.purchase.locale,
-      currency: this.props.purchase.currency,
-      onAddItem: this.onAddItemHandler
-    })
+    if (item.modifiers.length || item.addons.length) {
+      this.props.onBlock(SpecificsModal, {
+        item: item,
+        size: 'cover',
+        locale: this.props.purchase.locale,
+        currency: this.props.purchase.currency,
+        onAddItem: this.onAddItemHandler.bind(this)
+      })
+    } else {
+      this.onAddItemHandler(new PurchaseItem(item))
+    }
   }
 
   onAddItemHandler (item) {
-    // TODO
+    this.props.purchase.addItem(item)
   }
 
-  onModifyItemHandler (modifier, option) {
-    // TODO
-  }
-
-  onAddonItemHandler (addon) {
-    this.setState({
-      addons: addon
-    })
-  }
-
-  onDeleteItemHandler (item) {
-    // TODO
+  onDeleteItemHandler (itemId) {
+    this.props.purchase.deleteItem(itemId)
   }
 
   render () {
@@ -103,12 +97,13 @@ export default class ShopView extends SceneComponent {
         </div>
         <div className={shopStyles.menu}>
           {shop.menu.map((category) => <OptionList key={category.id} name={category.name}>
-            {category.items.map((item) =>
-              <Option key={item.id}
-                deletable={item.qty > 0}
+            {category.items.map((item) => {
+              const qty = this.props.purchase.itemQuantity(item.id)
+              return <Option key={item.id}
+                deletable={qty > 0}
                 onClick={this.onSelectItemHandler.bind(this, item)}
-                onDelete={this.onDeleteItemHandler.bind(this, item)}>
-                <div className={shopStyles.itemqty}>{item.qty ? item.qty + 'x' : ''}</div>
+                onDelete={this.onDeleteItemHandler.bind(this, item.id)}>
+                <div className={shopStyles.itemqty}>{qty > 0 ? qty + 'x' : ''}</div>
                 <div className={shopStyles.iteminfo}>
                   <div className={shopStyles.itemname}>{item.name}</div>
                   {!!item.description && <div className={shopStyles.itemdesc}>{item.description}</div>}
@@ -117,7 +112,7 @@ export default class ShopView extends SceneComponent {
                   FormatPrice.format(this.props.purchase.locale.code, this.props.purchase.currency, (item.price / 100))
                 }</div>
               </Option>
-            )}
+            })}
           </OptionList>
           )}
         </div>

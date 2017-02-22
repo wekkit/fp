@@ -6,31 +6,31 @@ import OptionList from '../shared/Option/OptionList.js'
 import Option from '../shared/Option/Option.js'
 
 import FormatPrice from 'format-price'
+import { PurchaseItem } from '../../models/Purchase.js'
 
 import React, { Component, PropTypes } from 'react'
+import { observer } from 'mobx-react'
 
+@observer
 export default class SpecificsModal extends Component {
 
-  addItemHandler () {
-    this.props.onClose()
-    this.props.obj.onAddItem()
+  constructor (props) {
+    super(props)
+
+    this.cartItem = new PurchaseItem(props.obj.item)
   }
 
-  closeHandler () {
+  addItemHandler () {
+    this.props.obj.onAddItem(this.cartItem)
     this.props.onClose()
-    if (this.props.obj.onClose instanceof Function) {
-      this.props.obj.onClose()
-    }
   }
 
   onModifyItemHandler (modifier, option) {
-    // TODO
+    this.cartItem.modify(modifier, option)
   }
 
   onAddonItemHandler (addon) {
-    this.setState({
-      addons: addon
-    })
+    this.cartItem.toggleAddon(addon)
   }
 
   render () {
@@ -38,8 +38,9 @@ export default class SpecificsModal extends Component {
 
     return (
       <ModalOverlay
+        changes={this.cartItem.changes}
         title={item.name}
-        onBack={this.closeHandler.bind(this)}>
+        onBack={this.props.onClose}>
         <div className={shopStyles.specifics}>
           <div className={shopStyles.item}>
             <p>{item.description}</p>
@@ -50,7 +51,7 @@ export default class SpecificsModal extends Component {
                 {modifier.options.map((option) =>
                   <Option key={option.name}
                     checkable={!false}
-                    checked={option.default}
+                    checked={this.cartItem.optionIsChecked(modifier, option)}
                     onClick={this.onModifyItemHandler.bind(this, modifier, option)}>
                     <div className={shopStyles.iteminfo}>
                       <div className={shopStyles.itemname}>{option.name}</div>
@@ -68,7 +69,7 @@ export default class SpecificsModal extends Component {
                 {item.addons.map((addon) =>
                   <Option key={addon.name}
                     checkable={!false}
-                    checked={addon.checked}
+                    checked={this.cartItem.addonIsChecked(addon)}
                     onClick={this.onAddonItemHandler.bind(this, addon)}>
                     <div className={shopStyles.iteminfo}>
                       <div className={shopStyles.itemname}>{addon.name}</div>

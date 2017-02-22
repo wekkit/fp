@@ -38,6 +38,7 @@ export class Shop {
   }
   hour12 = true
   active = true
+  version = '0.0.1'
   menu = [
     {
       id: 38,
@@ -48,18 +49,16 @@ export class Shop {
           name: 'Café Latte',
           description: 'The milky classic with a cremy top',
           price: 600,
-          qty: 1,
           modifiers: [
             {
               name: 'Size',
               options: [
                 {
                   name: 'Large',
-                  price: 700
+                  price: 100
                 },
                 {
                   name: 'Small',
-                  price: 600,
                   default: true
                 }
               ]
@@ -87,7 +86,7 @@ export class Shop {
           ]
         },
         {
-          id: 8231,
+          id: 8261,
           name: 'Flat White',
           description: 'The Australien favorite with a thin layer of crema',
           price: 600,
@@ -97,11 +96,10 @@ export class Shop {
               options: [
                 {
                   name: 'Large',
-                  price: 700
+                  price: 100
                 },
                 {
                   name: 'Small',
-                  price: 600,
                   default: true
                 }
               ]
@@ -138,11 +136,10 @@ export class Shop {
               options: [
                 {
                   name: 'Large',
-                  price: 700
+                  price: 100
                 },
                 {
                   name: 'Small',
-                  price: 600,
                   default: true
                 }
               ]
@@ -179,11 +176,10 @@ export class Shop {
               options: [
                 {
                   name: 'Large',
-                  price: 700
+                  price: 100
                 },
                 {
                   name: 'Small',
-                  price: 600,
                   default: true
                 }
               ]
@@ -217,7 +213,7 @@ export class Shop {
       name: 'Straight',
       items: [
         {
-          id: 8232,
+          id: 8632,
           name: 'Long Black',
           description: 'Sometimes also called Americano',
           price: 500,
@@ -227,11 +223,10 @@ export class Shop {
               options: [
                 {
                   name: 'Large',
-                  price: 600
+                  price: 100
                 },
                 {
                   name: 'Small',
-                  price: 500,
                   default: true
                 }
               ]
@@ -259,7 +254,7 @@ export class Shop {
           ]
         },
         {
-          id: 8236,
+          id: 8936,
           name: 'Piccolo',
           price: 500,
           modifiers: [],
@@ -280,7 +275,7 @@ export class Shop {
           ]
         },
         {
-          id: 8234,
+          id: 8734,
           name: 'Espresso',
           description: 'Just the goodness of our beans',
           price: 400,
