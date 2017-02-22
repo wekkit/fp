@@ -43,18 +43,18 @@ export default class ShareView extends Component {
       <ModalOverlay title='Share' onBack={this.props.onClose}>
         <OptionList>
           <Option>
-            <input type='text' value={Config.referralLink + this.props.user.referral_code} readOnly onClick={this.selectCodeHandler} />
+            <input type='text' value={Config.referralLink + this.props.user.referralCode} readOnly onClick={this.selectCodeHandler} />
           </Option>
           <div className={styles.socialOption}>
             <FacebookShareButton
-              url={Config.referralLink + this.props.user.referral_code}
+              url={Config.referralLink + this.props.user.referralCode}
               title={'Refer a friend'}>
               <FacebookIcon
                 size={32}
                 round />
             </FacebookShareButton>
             <TwitterShareButton
-              url={Config.referralLink + this.props.user.referral_code}
+              url={Config.referralLink + this.props.user.referralCode}
               title={'Refer a friend'}
               >
               <TwitterIcon
@@ -62,7 +62,7 @@ export default class ShareView extends Component {
                 round />
             </TwitterShareButton>
             <LinkedinShareButton
-              url={Config.referralLink + this.props.user.referral_code}
+              url={Config.referralLink + this.props.user.referralCode}
               title={'Refer a friend'}
               >
               <LinkedinIcon

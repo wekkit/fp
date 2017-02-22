@@ -10,11 +10,11 @@ export class Purchase {
   @observable status = 0
   @observable date
   @observable items = []
-  @observable payment_method
+  @observable paymentMethod
   shop
   user
 
-  @computed get status_string () {
+  @computed get statusString () {
     for (var property in PurchaseStatus) {
       if (PurchaseStatus[property] === this.status) {
         return property.toLowerCase()

@@ -66,7 +66,7 @@ export default class PaymentView extends SceneComponent {
         var params = {
           last4: response.card.last4,
           type: response.card.type,
-          stripe_customer_id: response.id
+          stripeId: response.id
         }
         this.props.user.set(params)
         this.props.user.savePayment(params)
@@ -147,7 +147,7 @@ export default class PaymentView extends SceneComponent {
           render={this.toRender('overview')}
           visible={this.toShow('overview')}>
           <OptionList name={'Payment Methods'}>
-            {user.payment_methods.map((method) => {
+            {user.paymentMethods.map((method) => {
               return (
                 <Method
                   key={method.id}

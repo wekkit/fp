@@ -39,6 +39,7 @@ module.exports = {
     new Webpack.ProvidePlugin({
       'Promise': 'es6-promise',
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-    })
+    }),
+    new Webpack.optimize.UglifyJsPlugin({compress: {warnings: false}})
   ]
 }

@@ -94,13 +94,13 @@ export default class ProfileView extends SceneComponent {
               <input
                 type='text'
                 placeholder='First name'
-                defaultValue={user.first_name}
-                onKeyUp={this.editPropertyHandler.bind(this, 'first_name')} />
+                defaultValue={user.firstName}
+                onKeyUp={this.editPropertyHandler.bind(this, 'firstName')} />
               <input
                 type='text'
                 placeholder='Last name'
-                defaultValue={user.last_name}
-                onKeyUp={this.editPropertyHandler.bind(this, 'last_name')} />
+                defaultValue={user.lastName}
+                onKeyUp={this.editPropertyHandler.bind(this, 'lastName')} />
             </Option>
           </OptionList>
           <OptionList name={'Contact information'}>

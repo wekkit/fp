@@ -19,7 +19,7 @@ import ShopView from './Shop/Shop.js'
 import ProfileView from './Profile/Profile.js'
 import OrdersView from './Orders/Orders.js'
 import PaymentView from './Payment/Payment.js'
-import ShareView from './Share/Share.js'
+// import ShareView from './Share/Share.js'
 
 const timeUpdateInterval = 10000
 
@@ -172,14 +172,15 @@ export default class App extends SceneComponent {
               onClose={this.navigateHandler.bind(this, 'home')}
               onBlock={this.blockingModalOpenHandler.bind(this)} />
           </ModalSlider>
-          <ModalSlider
+          {/* <ModalSlider
             cover={!false}
             render={this.toRender('share')}
             visible={this.toShow('share')}>
             <ShareView
-              user={this.props.userStore.user}
-              onClose={this.navigateHandler.bind(this, 'home')} />
+              user={this.props.userStore.user}.
+              onClose={this.navigateHandler.bind(this, 'home')} /
           </ModalSlider>
+          */}
           <ModalSlider
             cover={!false}
             render={this.toRender('payment')}

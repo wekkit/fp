@@ -1,5 +1,3 @@
-import styles from '../shared/styles/ModalStyles.css'
-
 import React from 'react'
 import SceneComponent from '../../mixins/SceneComponent.js'
 import {observer} from 'mobx-react'
