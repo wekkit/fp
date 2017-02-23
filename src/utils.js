@@ -49,5 +49,8 @@ module.exports = {
   printTime (hour, minute, hour12) {
     let str = minute ? ':MM' : ''
     return DateFormat((new Date((new Date()).setHours(hour, minute))), hour12 ? 'h' + str + 'tt' : 'H' + str)
+  },
+  sortByName (a, b) {
+    return a.name > b.name
   }
 }

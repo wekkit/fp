@@ -1,5 +1,7 @@
 import {observable, computed} from 'mobx'
 
+import Utils from 'utils'
+
 export const PurchaseStatus = {
 
 }
@@ -50,7 +52,7 @@ export class Purchase {
     this.total = this.items.reduce((a, b) => {
       return { price: (a ? a.price : 0) + b.price * b.quantity }
     }, 0).price || 0
-    console.log(this.toString())
+    // console.log(this.toString())
   }
 
   addItem (item) {
@@ -66,7 +68,12 @@ export class Purchase {
     this.calculateCart()
   }
 
-  deleteItem (itemId) {
+  deleteItem (itemDescription) {
+    this.items = this.items.filter((i) => i.description !== itemDescription)
+    this.calculateCart()
+  }
+
+  deleteItems (itemId) {
     this.items = this.items.filter((i) => i.item.id !== itemId)
     this.calculateCart()
   }
@@ -89,17 +96,22 @@ export class PurchaseItem {
   specialRequest
   @observable changes = 0
 
+  get modifiersDescription () {
+    return Object.keys(this.modifiers).map((k) => this.modifiers[k].name).sort(Utils.sortByName).join(', ')
+  }
+
+  get addonsDescription () {
+    return this.addons.sort(Utils.sortByName).map((a) => a.name).join(', ')
+  }
+
+  get shortDescription () {
+    return (this.modifiersDescription + ' ' + this.item.name).trim()
+  }
+
   @computed get description () {
-    const reducer = (a, b) => {
-      return (a ? a + ', ' : '') + b
-    }
-    const sort = (a, b) => {
-      return a.name > b.name
-    }
-    const modifiers = Object.keys(this.modifiers).map((k) => this.modifiers[k].name).sort(sort).reduce(reducer, 0)
-    const addons = this.addons.sort(sort).map((a) => a.name).reduce(reducer, 0)
     const specialRequest = this.specialRequest ? ' (' + this.specialRequest + ')' : ''
-    return (modifiers ? modifiers + ' ' : '') + this.item.name + (addons ? ' - ' + addons : '') + specialRequest
+    const addons = (this.addons.length > 0 ? ' - ' : '') + this.addonsDescription
+    return (this.shortDescription + addons + specialRequest).trim()
   }
 
   constructor (item) {

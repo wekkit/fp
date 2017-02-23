@@ -73,7 +73,7 @@ export default class ShopView extends SceneComponent {
   }
 
   onDeleteItemHandler (itemId) {
-    this.props.purchase.deleteItem(itemId)
+    this.props.purchase.deleteItems(itemId)
   }
 
   render () {
