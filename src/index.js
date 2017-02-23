@@ -77,11 +77,6 @@ if (Utils.browserIsCompatible()) {
 // Enable :active CSS selector on mobile
 document.ontouchstart = function () {}
 
-// Disable rubber band scrolling of the whole document when touching
-document.ontouchmove = function (event) {
-  event.preventDefault()
-}
-
 // Detect the use of mobile Safari to consider the navigation bar on the bottom of the screen as deadspace
 Utils.detectSafari(0)
 window.onresize = Utils.detectSafari

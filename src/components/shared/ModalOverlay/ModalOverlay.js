@@ -5,22 +5,19 @@ import Swipeable from 'react-swipeable'
 
 export default class ModalOverlay extends Component {
 
-  componentDidMount () {
-    this.refs.body.ontouchmove = function (event) { event.stopPropagation() }
-  }
-
   render () {
     return (
       <Swipeable
         className={styles.modaloverlay}
         onSwipedDown={this.props.onBack}
-        onSwipedRight={this.props.onBack}>
+        onSwipedRight={this.props.onBack}
+        preventDefaultTouchmoveEvent={false}>
         <div className={styles.header}>
           <div className={this.props.backVisible ? styles.back : styles.close} onClick={this.props.onBack} />
           <h1>{this.props.title}</h1>
           <div className={styles.action + (this.props.actionVisible ? '' : ' ' + styles.hidden) + ((this.props.loading ? ' ' + styles.loading : ''))} onClick={this.props.onAction}>{this.props.loading ? '' : this.props.actionLabel}</div>
         </div>
-        <div ref='body' className={styles.body}>
+        <div className={styles.body}>
           {this.props.children}
         </div>
       </Swipeable>

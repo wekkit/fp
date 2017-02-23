@@ -87,6 +87,8 @@ textarea {
   height: 100vh;
   width: 100vw;
   box-sizing: border-box;
+	-webkit-overflow-scrolling: touch;
+	overflow: auto;
 }
 
 :global(.dealWithMobileSafari) .app {
@@ -118,6 +120,7 @@ textarea {
   background-color: silver;
   transition: all .25s ease-out;
   -webkit-transform: translate3d(0, 0, 0);
+	margin-bottom: -1px;
 }
 
 .inactive {

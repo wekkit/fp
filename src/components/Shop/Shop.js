@@ -29,15 +29,6 @@ export default class ShopView extends SceneComponent {
     }
   }
 
-  componentDidMount () {
-    // TODO: wtf. blocks delete!!
-    this.refs.shop.ontouchmove = function (event) { event.stopPropagation() }
-  }
-
-  /* componentDidUpdate (props, state) {
-    this.refs.shop && (this.refs.shop.ontouchmove = function (event) { event.stopPropagation() })
-  } */
-
   locateHandler () {
     this.props.onLocate(() => {
       if (this.props.currentPosition) {
@@ -70,10 +61,6 @@ export default class ShopView extends SceneComponent {
 
   onAddItemHandler (item) {
     this.props.purchase.addItem(item)
-  }
-
-  onDeleteItemHandler (itemId) {
-    this.props.purchase.deleteItems(itemId)
   }
 
   render () {
@@ -111,7 +98,7 @@ export default class ShopView extends SceneComponent {
               return <Option key={item.id}
                 deletable={qty > 0}
                 onClick={this.onSelectItemHandler.bind(this, item)}
-                onDelete={this.onDeleteItemHandler.bind(this, item.id)}>
+                onDelete={() => this.props.purchase.deleteItems(item.id)}>
                 <div className={shopStyles.itemqty}>{qty > 0 ? qty + 'x' : ''}</div>
                 <div className={shopStyles.iteminfo}>
                   <div className={shopStyles.itemname}>{item.name}</div>

@@ -17,7 +17,6 @@ export default class OrdersView extends SceneComponent {
     this.state = {
       currentScene: 'overview',
       nextScene: '',
-      edited: false,
       loading: false
     }
   }
