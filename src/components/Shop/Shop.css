@@ -21,10 +21,11 @@
 
 .header {
   position: relative;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.5) 100%), url(../shared/images/fabcafeimage.jpg);
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%), url(../shared/images/fabcafeimage.jpg);
   background-position: top center;
   background-size: cover;
   height: 220px;
+  z-index: 1;
 }
 
 .logo {
@@ -40,7 +41,7 @@
 
 .pickupinfo {
   position: absolute;
-  bottom: 0;
+  bottom: 16px;
   left: 0;
   right: 0;
   display: flex;
@@ -99,13 +100,17 @@
 }
 
 .intro {
+  position: relative;
+  z-index: 2;
+  margin: -16px 16px 0;
   background: white;
-  padding: 20px 10px 0;
-  border-bottom: 1px solid #eee;
+  padding: 4px 10px 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .intro p {
   text-align: left;
+  margin-bottom: 1em;
 }
 
 .itemqty {
@@ -135,6 +140,18 @@
   padding-right: 8px;
   font-size: .85em;
   font-weight: 400;
+}
+
+.rowdesc {
+  flex: auto;
+  font-size: .85em;
+  text-align: right;
+  font-weight: bold;
+}
+
+.total {
+  composes: itemprice;
+  font-weight: bold;
 }
 
 .footer {

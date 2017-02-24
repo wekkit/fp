@@ -1,0 +1,10 @@
+.button {
+  composes: button from '../shared/styles/ModalStyles.css';
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  flex: auto;
+  text-align: center;
+}

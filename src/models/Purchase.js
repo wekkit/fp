@@ -15,6 +15,7 @@ export class Purchase {
   @observable quantity = 0
   total = 0
   @observable paymentMethod
+  specialRequest
   shop
   user
 
@@ -76,6 +77,10 @@ export class Purchase {
   deleteItems (itemId) {
     this.items = this.items.filter((i) => i.item.id !== itemId)
     this.calculateCart()
+  }
+
+  addSpecialRequest (value) {
+    this.specialRequest = value
   }
 
   toString () {

@@ -92,14 +92,6 @@ export default class PaymentView extends SceneComponent {
     }, 375)
   }
 
-  checkCampaignHandler () {
-    this.navigateHandler('viewcampaign')
-  }
-
-  selectMethodHandler (id) {
-    return
-  }
-
   deleteMethodHandler (id) {
     this.props.onBlock(ConfirmModal, {
       title: 'Delete?',
@@ -107,12 +99,7 @@ export default class PaymentView extends SceneComponent {
       confirmText: 'Delete',
       cancelText: 'Cancel',
       onConfirm: () => {
-        this.props.user.savePayment({
-          last4: null,
-          type: null,
-          stripe_customer_id: null
-        })
-        this.props.user.save()
+        // TODO
       }
     })
   }
@@ -147,18 +134,12 @@ export default class PaymentView extends SceneComponent {
           render={this.toRender('overview')}
           visible={this.toShow('overview')}>
           <OptionList name={'Payment Methods'}>
-            {user.paymentMethods.map((method) => {
-              return (
-                <Method
-                  key={method.id}
-                  default={method.default}
-                  type={method.type}
-                  onSelect={this.selectMethodHandler.bind(this, method.id)}
-                  onDelete={this.deleteMethodHandler.bind(this, method.id)}>
-                  **** {method.last4}
-                </Method>
-              )
-            })}
+            {user.paymentMethods.map((method) => <Method key={method.id}
+              {...method}
+              highlightDefault
+              onClick={() => this.props.user.setDefaultPaymentMethod(method.id)}
+              onDelete={() => this.props.user.deletePaymentMethod(method.id)} />
+            )}
             <div className={payment.addpayment} onClick={this.addMethodHandler.bind(this)}>
               <span>Add payment method</span>
             </div>

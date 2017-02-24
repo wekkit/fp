@@ -1,26 +1,35 @@
-import styles from '../shared/Option/Option.css'
-import methods from './Payment.css'
+import styles from './Payment.css'
 
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
+import Option from '../shared/Option/Option.js'
 
 export default class Method extends Component {
 
-  deleteHandler (event) {
-    event.stopPropagation()
-    this.props.onDelete()
-  }
-
   render () {
-    const type = methods[(this.props.type || '').replace(/( |(\(.*\)))/g, '').toLowerCase()]
+    const type = (this.props.type || '').replace(/( |(\(.*\)))/g, '').toLowerCase()
+    const defaultMethod = this.props.highlightDefault && this.props.default
 
     return (
-      <div className={methods.method + ' ' + (type || methods.default)} onClick={this.props.onSelect}>
-        <span>{this.props.children}</span>
-        {this.props.default ? <span className={styles.optioninfo}>Default Method</span> : <span />}
-      </div>
+      <Option onClick={this.props.onClick}
+        onDelete={this.props.onDelete}
+        selectable={this.props.onClick instanceof Function}
+        deletable={this.props.onDelete instanceof Function}>
+        <div className={styles.method + ' ' + (styles[type] || styles.other)}>
+          {type === 'applepay' ? 'Apple Pay'
+            : (type === 'paypal' ? 'PayPal' : '**** ' + this.props.last4)}
+        </div>
+        {defaultMethod && <div className={styles.default}>Default</div>}
+      </Option>
     )
   }
 
-  // <span className={styles.optiondelete} onClick={this.deleteHandler.bind(this)} />
+}
 
+Method.propTypes = {
+  default: PropTypes.bool,
+  highlightDefault: PropTypes.bool,
+  type: PropTypes.string.isRequired,
+  last4: PropTypes.string,
+  onClick: PropTypes.func,
+  onDelete: PropTypes.func
 }

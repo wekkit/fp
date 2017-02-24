@@ -12,7 +12,7 @@ export default class ModalOverlay extends Component {
         onSwipedDown={this.props.onBack}
         onSwipedRight={this.props.onBack}
         preventDefaultTouchmoveEvent={false}
-        delta={330}>
+        delta={300}>
         <div className={styles.header}>
           <div className={this.props.backVisible ? styles.back : styles.close} onClick={this.props.onBack} />
           <h1>{this.props.title}</h1>

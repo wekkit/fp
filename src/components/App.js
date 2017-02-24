@@ -11,7 +11,8 @@ import ModalBox from './shared/ModalBox/ModalBox.js'
 
 //  Nav elements
 import HeaderHomeNav from './HeaderNav/HomeNav.js'
-import CheckoutSummary from './CheckoutSummary/CheckoutSummary.js'
+import CheckoutSummaryView from './CheckoutSummary/CheckoutSummary.js'
+import OrderProgressView from './OrderProgress/OrderProgress.js'
 import MainNav from './MainNav/MainNav.js'
 
 // Modals
@@ -163,7 +164,7 @@ export default class App extends SceneComponent {
             from='bottom'
             render={this.toRender('home')}
             visible={this.toShow('home') && this.props.purchaseStore.purchase.items.length > 0}>
-            <CheckoutSummary
+            <CheckoutSummaryView
               quantity={this.props.purchaseStore.purchase.quantity}
               total={this.props.purchaseStore.purchase.total}
               locale={this.props.purchaseStore.purchase.locale}
@@ -178,6 +179,13 @@ export default class App extends SceneComponent {
               purchase={this.props.purchaseStore.purchase}
               onClose={this.navigateHandler.bind(this, 'home')}
               onBlock={this.blockingModalOpenHandler.bind(this)} />
+          </ModalSlider>
+          <ModalSlider
+            from='bottom'
+            render={this.toRender('checkout')}
+            visible={this.toShow('checkout') && this.props.purchaseStore.purchase.items.length > 0}>
+            <OrderProgressView
+              purchase={this.props.purchaseStore.purchase} />
           </ModalSlider>
           <ModalSlider
             cover

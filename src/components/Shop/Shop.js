@@ -86,10 +86,10 @@ export default class ShopView extends SceneComponent {
           </div>
         </div>
         <div className={shopStyles.intro}>
+          <p>{shop.intro}</p>
           <address className={shopStyles.address}>
             {shop.address}
           </address>
-          <p>{shop.intro}</p>
         </div>
         <div className={shopStyles.menu}>
           {shop.menu.map((category) => <OptionList key={category.id} name={category.name}>
