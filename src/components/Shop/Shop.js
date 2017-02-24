@@ -7,7 +7,7 @@ import SceneComponent from '../../mixins/SceneComponent.js'
 import OptionList from '../shared/Option/OptionList.js'
 import Option from '../shared/Option/Option.js'
 
-import InfoModal from '../ModalBoxes/InfoModal.js'
+// import InfoModal from '../ModalBoxes/InfoModal.js'
 import SpecificsModal from '../ModalBoxes/SpecificsModal.js'
 
 import Utils from 'utils'
@@ -67,56 +67,54 @@ export default class ShopView extends SceneComponent {
     const shop = this.props.purchase.shop
     let i = 0
 
-    return (
-      <div ref='shop' className={shopStyles.shop}>
-        <div className={shopStyles.header}>
-          <h1 className={shopStyles.logo}><a href={'#'}><img src={Logo} alt={shop.name} /></a></h1>
-          <div className={shopStyles.pickupinfo}>
-            <span className={shopStyles.walkingmin} onClick={this.locateHandler.bind(this)}>{this.props.currentPosition ? (shop.duration ? shop.duration + ' walk' : 'Locating...') : 'How far is it?'}</span>
-            <span className={shopStyles.pickupstatus} onClick={''}>
-              {shop.isOpen() ? 'open' : 'closed'}
-              <span className={shopStyles.pickuptimes}>
-                {shop.pickupTimesOnDate().map((times) =>
-                  <span key={++i}>
-                    {Utils.printTime(times.startHour, times.startMinute, shop.hour12)} &minus; {Utils.printTime(times.endHour, times.endMinute, shop.hour12)}
-                  </span>
-                )}
-              </span>
+    return <div className={shopStyles.shop}>
+      <div className={shopStyles.header}>
+        <h1 className={shopStyles.logo}><a href={'#'}><img src={Logo} alt={shop.name} /></a></h1>
+        <div className={shopStyles.pickupinfo}>
+          <span className={shopStyles.walkingmin} onClick={this.locateHandler.bind(this)}>{this.props.currentPosition ? (shop.duration ? shop.duration + ' walk' : 'Locating...') : 'How far is it?'}</span>
+          <span className={shopStyles.pickupstatus} onClick={''}>
+            {shop.isOpen() ? 'open' : 'closed'}
+            <span className={shopStyles.pickuptimes}>
+              {shop.pickupTimesOnDate().map((times) =>
+                <span key={++i}>
+                  {Utils.printTime(times.startHour, times.startMinute, shop.hour12)} &minus; {Utils.printTime(times.endHour, times.endMinute, shop.hour12)}
+                </span>
+              )}
             </span>
-          </div>
-        </div>
-        <div className={shopStyles.intro}>
-          <p>{shop.intro}</p>
-          <address className={shopStyles.address}>
-            {shop.address}
-          </address>
-        </div>
-        <div className={shopStyles.menu}>
-          {shop.menu.map((category) => <OptionList key={category.id} name={category.name}>
-            {category.items.map((item) => {
-              const qty = this.props.purchase.itemQuantity(item.id)
-              return <Option key={item.id}
-                deletable={qty > 0}
-                onClick={this.onSelectItemHandler.bind(this, item)}
-                onDelete={() => this.props.purchase.deleteItems(item.id)}>
-                <div className={shopStyles.itemqty}>{qty > 0 ? qty + 'x' : ''}</div>
-                <div className={shopStyles.iteminfo}>
-                  <div className={shopStyles.itemname}>{item.name}</div>
-                  {!!item.description && <div className={shopStyles.itemdesc}>{item.description}</div>}
-                </div>
-                <div className={shopStyles.itemprice}>{
-                  FormatPrice.format(this.props.purchase.locale.code, this.props.purchase.currency, (item.price / 100))
-                }</div>
-              </Option>
-            })}
-          </OptionList>
-          )}
-        </div>
-        <div className={shopStyles.footer}>
-          <span className={shopStyles.forpickup}>forpickup</span> ♥ Singapore
+          </span>
         </div>
       </div>
-    )
+      <div className={shopStyles.intro}>
+        <p>{shop.intro}</p>
+        <address className={shopStyles.address}>
+          {shop.address}
+        </address>
+      </div>
+      <div className={shopStyles.menu}>
+        {shop.menu.map((category) => <OptionList key={category.id} name={category.name}>
+          {category.items.map((item) => {
+            const qty = this.props.purchase.itemQuantity(item.id)
+            return <Option key={item.id}
+              deletable={qty > 0}
+              onClick={this.onSelectItemHandler.bind(this, item)}
+              onDelete={() => this.props.purchase.deleteItems(item.id)}>
+              <div className={shopStyles.itemqty}>{qty > 0 ? qty + 'x' : ''}</div>
+              <div className={shopStyles.iteminfo}>
+                <div className={shopStyles.itemname}>{item.name}</div>
+                {!!item.description && <div className={shopStyles.itemdesc}>{item.description}</div>}
+              </div>
+              <div className={shopStyles.itemprice}>{
+                FormatPrice.format(this.props.purchase.locale.code, this.props.purchase.currency, (item.price / 100))
+              }</div>
+            </Option>
+          })}
+        </OptionList>
+        )}
+      </div>
+      <div className={shopStyles.footer}>
+        <span className={shopStyles.forpickup}>forpickup</span> ♥ Singapore
+      </div>
+    </div>
   }
 
 }

@@ -1,8 +1,43 @@
+.cart {
+  background-color: rgba(255,255,255,0);
+  margin: 0 0;
+  width: calc(100vw - 0px);
+  height: 45px;
+  transition: height .1s ease-in, all .35s ease-out;
+}
+
+.ordered {
+  composes: cart;
+  top: -50vh;
+  transform: translateY(-50vh);
+  margin: -150px 40px;
+  height: 300px;
+  width: calc(100vw - 80px);
+  background-color: rgba(255,255,255,1);
+  border-radius: 4px;
+  box-shadow: 0 25px 50px rgba(0,0,0,.3);
+}
+
+.submitted {
+
+}
+
+.confirmed {
+
+}
+
 .button {
   composes: button from '../shared/styles/ModalStyles.css';
   display: flex;
   align-items: center;
+  opacity: 1;
+  transition: all .2s ease-out;
 }
+
+.ordered button {
+  opacity: 0;
+}
+
 
 .label {
   flex: auto;

@@ -3,7 +3,14 @@ import {observable, computed} from 'mobx'
 import Utils from 'utils'
 
 export const PurchaseStatus = {
-
+  cart: 0,
+  ordered: 1,
+  submitted: 2,
+  confirmed: 3,
+  fulfilled: 4,
+  rejected: 20,
+  timedout: 21,
+  cancelled: 22
 }
 
 export class Purchase {
@@ -88,7 +95,7 @@ export class Purchase {
   }
 
   purchase () {
-    // purchase
+    this.status = this.status ? 0 : 1
   }
 }
 

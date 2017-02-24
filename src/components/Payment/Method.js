@@ -9,18 +9,16 @@ export default class Method extends Component {
     const type = (this.props.type || '').replace(/( |(\(.*\)))/g, '').toLowerCase()
     const defaultMethod = this.props.highlightDefault && this.props.default
 
-    return (
-      <Option onClick={this.props.onClick}
-        onDelete={this.props.onDelete}
-        selectable={this.props.onClick instanceof Function}
-        deletable={this.props.onDelete instanceof Function}>
-        <div className={styles.method + ' ' + (styles[type] || styles.other)}>
-          {type === 'applepay' ? 'Apple Pay'
-            : (type === 'paypal' ? 'PayPal' : '**** ' + this.props.last4)}
-        </div>
-        {defaultMethod && <div className={styles.default}>Default</div>}
-      </Option>
-    )
+    return <Option onClick={this.props.onClick}
+      onDelete={this.props.onDelete}
+      selectable={this.props.onClick instanceof Function}
+      deletable={this.props.onDelete instanceof Function}>
+      <div className={styles.method + ' ' + (styles[type] || styles.other)}>
+        {type === 'applepay' ? 'Apple Pay'
+          : (type === 'paypal' ? 'PayPal' : '**** ' + this.props.last4)}
+      </div>
+      {defaultMethod && <div className={styles.default}>Default</div>}
+    </Option>
   }
 
 }

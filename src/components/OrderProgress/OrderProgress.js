@@ -19,6 +19,5 @@ export default class OrderProgressView extends Component {
 }
 
 OrderProgressView.propTypes = {
-  onClose: PropTypes.func.isRequired,
   purchase: PropTypes.object.isRequired
 }

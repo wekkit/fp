@@ -142,111 +142,112 @@ export default class App extends SceneComponent {
   }
 
   render () {
-    return (
-      <div className={styles.app}>
-        <div className={this.props.errorStore.error.message ? styles.showerror : styles.hideerror}>{this.props.errorStore.error.message}</div>
-        <div className={(this.state.blockingModalVisible ? styles.inactive : styles.active)}>
-          <ShopView
-            purchase={this.props.purchaseStore.purchase}
-            now={this.state.now}
-            currentPosition={this.state.currentPosition}
-            onLocate={this.locateHandler.bind(this)}
-            onBlock={this.blockingModalOpenHandler.bind(this)}
-            />
-          <ModalSlider
-            from='top'
-            render={this.toRender('home')}
-            visible={this.toShow('home')}>
-            <HeaderHomeNav
-              onToggleMainMenu={this.toggleMainMenuHandler.bind(this)} />
-          </ModalSlider>
-          <ModalSlider
-            from='bottom'
-            render={this.toRender('home')}
-            visible={this.toShow('home') && this.props.purchaseStore.purchase.items.length > 0}>
-            <CheckoutSummaryView
-              quantity={this.props.purchaseStore.purchase.quantity}
-              total={this.props.purchaseStore.purchase.total}
-              locale={this.props.purchaseStore.purchase.locale}
-              currency={this.props.purchaseStore.purchase.currency}
-              onCheckout={this.navigateHandler.bind(this, 'checkout')} />
-          </ModalSlider>
-          <ModalSlider
-            cover
-            render={this.toRender('checkout')}
-            visible={this.toShow('checkout')}>
-            <CheckoutView
-              purchase={this.props.purchaseStore.purchase}
-              onClose={this.navigateHandler.bind(this, 'home')}
-              onBlock={this.blockingModalOpenHandler.bind(this)} />
-          </ModalSlider>
-          <ModalSlider
-            from='bottom'
-            render={this.toRender('checkout')}
-            visible={this.toShow('checkout') && this.props.purchaseStore.purchase.items.length > 0}>
-            <OrderProgressView
-              purchase={this.props.purchaseStore.purchase} />
-          </ModalSlider>
-          <ModalSlider
-            cover
-            render={this.toRender('profile')}
-            visible={this.toShow('profile')}>
-            <ProfileView
-              user={this.props.userStore.user}
-              onClose={this.navigateHandler.bind(this, 'home')}
-              onBlock={this.blockingModalOpenHandler.bind(this)} />
-          </ModalSlider>
-          <ModalSlider
-            cover
-            render={this.toRender('orders')}
-            visible={this.toShow('orders')}>
-            <OrdersView
-              onClose={this.navigateHandler.bind(this, 'home')}
-              onBlock={this.blockingModalOpenHandler.bind(this)} />
-          </ModalSlider>
-          {/* <ModalSlider
-            cover
-            render={this.toRender('share')}
-            visible={this.toShow('share')}>
-            <ShareView
-              user={this.props.userStore.user}.
-              onClose={this.navigateHandler.bind(this, 'home')} /
-          </ModalSlider>
-          */}
-          <ModalSlider
-            cover
-            render={this.toRender('payment')}
-            visible={this.toShow('payment')}>
-            <PaymentView
-              user={this.props.userStore.user}
-              now={this.state.now}
-              onLoading={this.toggleLoadingHandler.bind(this)}
-              onClose={this.navigateHandler.bind(this, 'home')}
-              onBlock={this.blockingModalOpenHandler.bind(this)} />
-          </ModalSlider>
-        </div>
+    return <div className={styles.app}>
+      <div className={this.props.errorStore.error.message ? styles.showerror : styles.hideerror}>{this.props.errorStore.error.message}</div>
+      <div className={(this.state.blockingModalVisible || this.props.purchaseStore.purchase.status > 0 ? styles.inactive : styles.active)}>
+        <ShopView
+          purchase={this.props.purchaseStore.purchase}
+          now={this.state.now}
+          currentPosition={this.state.currentPosition}
+          onLocate={this.locateHandler.bind(this)}
+          onBlock={this.blockingModalOpenHandler.bind(this)}
+          />
         <ModalSlider
-          from='left'
-          cover
-          render
-          visible={this.state.mainNavVisible}
-          unslide='true'>
-          <MainNav
-            onNavigate={this.navigateHandler.bind(this)}
-            onToggleMainMenu={this.toggleMainMenuHandler.bind(this)}
-            onBlock={this.blockingModalOpenHandler.bind(this)} />
-            inactive={this.state.blockingModalVisible} />
+          from='top'
+          render={this.toRender('home')}
+          visible={this.toShow('home')}>
+          <HeaderHomeNav
+            onToggleMainMenu={this.toggleMainMenuHandler.bind(this)} />
         </ModalSlider>
-        <ModalBox
-          render={!!this.state.blockingModal}
-          size={this.state.blockingModalObj && this.state.blockingModalObj.size}
-          visible={this.state.blockingModalVisible}>
-          <this.state.blockingModal
-            obj={this.state.blockingModalObj}
-            onClose={this.blockingModalCloseHandler.bind(this)} />
-        </ModalBox>
+        <ModalSlider
+          from='bottom'
+          render={this.toRender('home')}
+          visible={this.toShow('home') && this.props.purchaseStore.purchase.items.length > 0}>
+          <CheckoutSummaryView
+            quantity={this.props.purchaseStore.purchase.quantity}
+            total={this.props.purchaseStore.purchase.total}
+            locale={this.props.purchaseStore.purchase.locale}
+            currency={this.props.purchaseStore.purchase.currency}
+            onCheckout={this.navigateHandler.bind(this, 'checkout')} />
+        </ModalSlider>
+        <ModalSlider
+          cover
+          render={this.toRender('checkout')}
+          visible={this.toShow('checkout') && this.props.purchaseStore.purchase.status === 0}>
+          <CheckoutView
+            purchase={this.props.purchaseStore.purchase}
+            onClose={this.navigateHandler.bind(this, 'home')}
+            onBlock={this.blockingModalOpenHandler.bind(this)} />
+        </ModalSlider>
+        <ModalSlider
+          cover
+          render={this.toRender('profile')}
+          visible={this.toShow('profile')}>
+          <ProfileView
+            user={this.props.userStore.user}
+            onClose={this.navigateHandler.bind(this, 'home')}
+            onBlock={this.blockingModalOpenHandler.bind(this)} />
+        </ModalSlider>
+        <ModalSlider
+          cover
+          render={this.toRender('orders')}
+          visible={this.toShow('orders')}>
+          <OrdersView
+            onClose={this.navigateHandler.bind(this, 'home')}
+            onBlock={this.blockingModalOpenHandler.bind(this)} />
+        </ModalSlider>
+        {/* <ModalSlider
+          cover
+          render={this.toRender('share')}
+          visible={this.toShow('share')}>
+          <ShareView
+            user={this.props.userStore.user}.
+            onClose={this.navigateHandler.bind(this, 'home')} /
+        </ModalSlider>
+        */}
+        <ModalSlider
+          cover
+          render={this.toRender('payment')}
+          visible={this.toShow('payment')}>
+          <PaymentView
+            user={this.props.userStore.user}
+            now={this.state.now}
+            onLoading={this.toggleLoadingHandler.bind(this)}
+            onClose={this.navigateHandler.bind(this, 'home')}
+            onBlock={this.blockingModalOpenHandler.bind(this)} />
+        </ModalSlider>
       </div>
-    )
+      <ModalSlider
+        from='left'
+        cover
+        render
+        visible={this.state.mainNavVisible}
+        unslide='true'>
+        <MainNav
+          onNavigate={this.navigateHandler.bind(this)}
+          onToggleMainMenu={this.toggleMainMenuHandler.bind(this)}
+          onBlock={this.blockingModalOpenHandler.bind(this)} />
+          inactive={this.state.blockingModalVisible} />
+      </ModalSlider>
+      <ModalBox
+        render={this.props.purchaseStore.purchase.status > 0}
+        visible={this.props.purchaseStore.purchase.status > 0} />
+      <ModalSlider
+        from='bottom'
+        render={this.toRender('checkout')}
+        visible={this.toShow('checkout') && this.props.purchaseStore.purchase.items.length > 0}>
+        <OrderProgressView
+          purchase={this.props.purchaseStore.purchase} />
+      </ModalSlider>
+      <ModalBox
+        render={!!this.state.blockingModal}
+        size={this.state.blockingModalObj && this.state.blockingModalObj.size}
+        visible={this.state.blockingModalVisible}>
+        <this.state.blockingModal
+          obj={this.state.blockingModalObj}
+          onClose={this.blockingModalCloseHandler.bind(this)} />
+      </ModalBox>
+    </div>
   }
 
 }
