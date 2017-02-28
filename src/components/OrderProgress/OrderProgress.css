@@ -1,45 +1,5 @@
-.cart {
-  position: relative;
-  background-color: #fff;
-  margin: 0 0;
-  width: 100%;
-  bottom: 0;
-  transition: all 0.35s ease-out;
-  box-shadow: -40px -5px 15px rgba(0,0,0,.04), 40px -5px 15px rgba(0,0,0,.04);
-}
-
-.ordered {
-  composes: cart;
-  bottom: 50vh;
-  margin: -150px 40px;
-  height: 300px;
-  width: calc(100% - 80px);
-  border-radius: 4px;
-  box-shadow: 0 25px 50px rgba(0,0,0,.3);
-}
-
-.submitted {
-
-}
-
-.confirmed {
-
-}
-
-.pickupDuration {
-  text-align: center;
-  padding: 12px 0 8px;
-}
-
-.pickupDurationMinutes {
-  vertical-align: middle;
-  font-size: 3em;
-  font-weight: 200;
-  margin: 0 12px;
-}
-
-.pickupLabel {
-  font-size: 0.8em;
+input {
+  color: #000;
 }
 
 .button {
@@ -64,6 +24,7 @@
   vertical-align: middle;
   font-weight: bold;
   font-family: 'Fredoka One', 'Arial Rounded MT', Helvetica, sans-serif;
+  opacity: 0;
 }
 
 .plus:before {
@@ -78,11 +39,128 @@
   content: '−';
 }
 
-.ordered button, .ordered .pickupLabel {
-  opacity: 0;
-}
-
 .label {
   flex: auto;
   text-align: center;
+}
+
+.pickupDuration {
+  text-align: center;
+  padding: 12px 0 8px;
+  transition: all .35s linear;
+  transform: translateY(-60px)
+}
+
+.pickupDurationMinutes {
+  vertical-align: middle;
+  font-size: 3em;
+  font-weight: 200;
+  margin: 0 12px;
+}
+
+.pickupLabel {
+  opacity: 0;
+  font-size: 0.8em;
+}
+
+.progressBar {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  border-radius: 51%;
+  box-shadow: 0 2px 3px rgba(0,0,0,.2);
+  margin: -16px auto -104px;
+  background-color: #fff;
+  transition: opacity .35s linear;
+}
+
+.progressBar svg {
+  width: 100px;
+  stroke-dashoffset: 0;
+}
+
+.progressBar circle:first-child {
+  animation: rot 10s infinite linear;
+  transform-origin: 50%;
+  stroke-width: 4px;
+}
+
+.progressBar circle:last-child {
+  stroke: #d70c19;
+  transition: stroke-dashoffset .35s linear;
+  transform: rotate(-90deg);
+  transform-origin: 50%;
+  stroke-width: 12px;
+}
+
+
+
+.orderProgress, .cart {
+  position: relative;
+  background-color: #fff;
+  margin: 0 0;
+  width: 100%;
+  bottom: 0;
+  transition: all 0.35s ease-out;
+  box-shadow: -40px -5px 15px rgba(0,0,0,.04), 40px -5px 15px rgba(0,0,0,.04);
+}
+
+.ordered, .submitted, .confirmed, .fulfilled {
+  composes: orderProgress;
+  bottom: 50vh;
+  margin: -150px 40px;
+  height: 300px;
+  width: calc(100% - 80px);
+  border-radius: 4px;
+  box-shadow: 0 25px 50px rgba(0,0,0,.3);
+}
+
+.cart .pickupLabel, .cart .pickupDuration button {
+  opacity: 1;
+}
+
+.cart .progressBar {
+  opacity: 0;
+}
+
+.cart .pickupDuration {
+  transform: translateY(0)
+}
+
+.ordered .progressBar circle:last-child {
+  stroke: orange;
+  animation: rot 1s linear infinite;
+}
+
+.submitted .progressBar circle:last-child {
+  stroke: orange;
+  animation: pulse 2s linear infinite;
+}
+
+.fulfilled .progressBar circle:last-child {
+  stroke: green;
+  animation: pulse 2s linear infinite;
+}
+
+.confirmed .progressBar circle:first-child {
+  stroke: #ddd;
+}
+
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes rot {
+  0% {
+    transform: rotate(360);
+  }
+  100% {
+    transform: rotate(1deg);
+  }
 }

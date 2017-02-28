@@ -369,7 +369,7 @@ export class Shop {
       return response.json()
     })
     .then((data) => {
-      this.duration = data.rows[0].elements[0].duration.text
+      this.duration = data.rows[0].elements[0].duration
       callback(null, data)
     })
     .catch(callback)

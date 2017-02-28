@@ -71,7 +71,7 @@ export default class ShopView extends SceneComponent {
       <div className={shopStyles.header}>
         <h1 className={shopStyles.logo}><a href={'#'}><img src={Logo} alt={shop.name} /></a></h1>
         <div className={shopStyles.pickupinfo}>
-          <span className={shopStyles.walkingmin} onClick={this.locateHandler.bind(this)}>{this.props.currentPosition ? (shop.duration ? shop.duration + ' walk' : 'Locating...') : 'How far is it?'}</span>
+          <span className={shopStyles.walkingmin} onClick={this.locateHandler.bind(this)}>{this.props.currentPosition ? (shop.duration ? shop.duration.text + ' walk' : 'Locating...') : 'How far is it?'}</span>
           <span className={shopStyles.pickupstatus} onClick={''}>
             {shop.isOpen() ? 'open' : 'closed'}
             <span className={shopStyles.pickuptimes}>
