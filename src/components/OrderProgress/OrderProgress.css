@@ -11,6 +11,7 @@ input {
 }
 
 .plus {
+  position: relative;
   display: inline-block;
   background: #d70c19;
   color: #fff;
@@ -25,6 +26,7 @@ input {
   font-weight: bold;
   font-family: 'Fredoka One', 'Arial Rounded MT', Helvetica, sans-serif;
   opacity: 0;
+  z-index: 0;
 }
 
 .plus:before {
@@ -64,6 +66,7 @@ input {
 }
 
 .progressBar {
+  position: relative;
   width: 100px;
   height: 100px;
   padding: 10px;
@@ -117,10 +120,12 @@ input {
 
 .cart .pickupLabel, .cart .pickupDuration button {
   opacity: 1;
+  z-index: 1;
 }
 
 .cart .progressBar {
   opacity: 0;
+  z-index: 0;
 }
 
 .cart .pickupDuration {
