@@ -23,6 +23,7 @@ export class Purchase {
   total = 0
   @observable paymentMethod
   specialRequest
+  @observable pickupDuration = 10
   shop
   user
 
@@ -49,6 +50,10 @@ export class Purchase {
 
   set (json = {}) {
     Object.assign(this, json)
+
+    if (json.shop) {
+      this.pickupDuration = json.shop.minimumPreperationMin
+    }
   }
 
   itemQuantity (itemId) {
@@ -74,6 +79,13 @@ export class Purchase {
       this.items.push(item)
     }
     this.calculateCart()
+  }
+
+  setPickupDuration (minutes) {
+    minutes += this.pickupDuration
+    if (minutes >= this.shop.minimumPreperationMin && minutes <= this.shop.maximumOrderAheadMin) {
+      this.pickupDuration = minutes
+    }
   }
 
   deleteItem (itemDescription) {

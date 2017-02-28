@@ -78,5 +78,5 @@ if (Utils.browserIsCompatible()) {
 document.ontouchstart = function () {}
 
 // Detect the use of mobile Safari to consider the navigation bar on the bottom of the screen as deadspace
-Utils.detectSafari(0)
-window.onresize = Utils.detectSafari
+Utils.detectSafari()
+window.addEventListener('orientationchange', Utils.detectSafari)

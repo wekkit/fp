@@ -25,11 +25,11 @@ module.exports = {
   formatPhoneNumber: function (phone) { // TODO phonnumber
     return phone ? phone.replace(/[^0-9+]/g, '').replace(/^00/, '+').replace(/^(\+1)?((?:\d{3})(?=\d))(\d{1,3})?(\d{1,4})?.*$/u, '$1 ($2) $3 $4').trim() : ''
   },
-  detectSafari: function (orientation = 90) {
+  detectSafari: function (orientation) {
     var ua = navigator.userAgent
     if (navigator.standalone) {
       document.body.classList.add('homeScreenSafari')
-    } else if (ua.indexOf('iPhone') !== -1 && ua.indexOf('Safari') !== -1 && ua.indexOf('CriOS') === -1 && ua.indexOf('FxiOS') === -1 && Math.abs(window.orientation) === orientation) {
+    } else if (ua.indexOf('iPhone') !== -1 && ua.indexOf('Safari') !== -1 && ua.indexOf('CriOS') === -1 && ua.indexOf('FxiOS') === -1 && window.orientation === 0) {
       document.body.classList.add('dealWithMobileSafari')
     } else {
       document.body.classList.remove('dealWithMobileSafari')

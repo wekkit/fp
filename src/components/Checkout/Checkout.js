@@ -52,14 +52,14 @@ export default class CheckoutView extends Component {
         </Option>
       </OptionList>
       <OptionList>
+        <Method {...purchase.user.defaultPaymentMethod} />
+      </OptionList>
+      <OptionList>
         <Option>
           <textarea onBlur={(e) => purchase.addSpecialRequest(e.target.value)} placeholder={'Enter special instructions for this order...'} />
         </Option>
       </OptionList>
-      <OptionList>
-        <Method {...purchase.user.defaultPaymentMethod} />
-      </OptionList>
-      <br /><br /><br /><br />
+      <br /><br /><br /><br /><br /><br /><br /><br /><br />
     </ModalOverlay>
   }
 
